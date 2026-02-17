@@ -1,159 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Happy Birthday💜</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday Dharmaraj 💜</title>
 
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        height: 100vh;
-        overflow: hidden;
-        background: linear-gradient(135deg, #7aa9ff, #d4b3ff);
-        font-family: 'Poppins', sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-    }
+    <style>
+        body {
+            margin: 0;
+            font-family: "Poppins", sans-serif;
+            background: linear-gradient(to bottom right, #5c6cff, #c8a2ff);
+            overflow: hidden;
+            height: 100vh;
+        }
 
-    .slide {
-        position: absolute;
-        width: 70%;
-        max-width: 800px;
-        padding: 30px 40px;
-        background: rgba(255,255,255,0.18);
-        backdrop-filter: blur(12px);
-        border-radius: 20px;
-        box-shadow: 0 0 30px rgba(0,0,0,0.25);
-        color: white;
-        text-align: center;
-        opacity: 0;
-        transform: translateY(20px);
-        transition: all 0.8s ease;
-        z-index: 10;
-    }
+        /* Floating Teddy Bears */
+        .teddy {
+            position: absolute;
+            font-size: 28px;
+            animation: floatDown linear infinite;
+            opacity: 0.85;
+        }
 
-    .slide.active {
-        opacity: 1;
-        transform: translateY(0);
-    }
+        @keyframes floatDown {
+            0% {
+                transform: translateY(-50px);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh);
+                opacity: 0.2;
+            }
+        }
 
-    h1 {
-        font-size: 2rem;
-        margin-bottom: 12px;
-        text-shadow: 0 0 12px rgba(0,0,0,0.6);
-    }
+        /* Center Card */
+        .card {
+            width: 70%;
+            max-width: 700px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 18px;
+            backdrop-filter: blur(10px);
+            color: white;
+            margin: 60px auto;
+            text-align: center;
+            font-size: 20px;
+            line-height: 1.6;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+            animation: fadeIn 1s ease-in;
+        }
 
-    p {
-        font-size: 1.2rem;
-        line-height: 1.7;
-        margin-bottom: 14px;
-        text-shadow: 0 0 6px rgba(0,0,0,0.6);
-    }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.96); }
+            to { opacity: 1; transform: scale(1); }
+        }
 
-    .big-text {
-        font-size: 2.8rem;
-        font-weight: bold;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        text-shadow: 0 0 15px rgba(0,0,0,0.6);
-    }
+        .bigText {
+            font-size: 45px;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 0 0 10px #ff85ff;
+        }
 
-    button {
-        margin-top: 20px;
-        padding: 10px 22px;
-        font-size: 1.1rem;
-        border: none;
-        border-radius: 12px;
-        background: rgba(255,255,255,0.25);
-        color: white;
-        cursor: pointer;
-        backdrop-filter: blur(6px);
-        transition: 0.3s;
-    }
-
-    button:hover {
-        background: rgba(255,255,255,0.45);
-    }
-
-    /* Teddy animation */
-    .teddy {
-        position: absolute;
-        font-size: 30px;
-        animation: fall linear infinite;
-        text-shadow: 0 0 6px rgba(0,0,0,0.5);
-    }
-
-    @keyframes fall {
-        0% { transform: translateY(-15vh) rotate(0deg); opacity: 1; }
-        100% { transform: translateY(110vh) rotate(360deg); opacity: 0.8; }
-    }
-</style>
+        button {
+            padding: 10px 25px;
+            margin-top: 20px;
+            border: none;
+            background: white;
+            color: #6a00ff;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 0 10px white;
+        }
+    </style>
 </head>
-
 <body>
 
-<!-- SLIDE 1 -->
-<div id="slide1" class="slide active">
-    <h1>Happy Birthday My Dearest Universe💜</h1>
+    <!-- Teddy Bears -->
+    <script>
+        const teddyCount = 25;
+        for (let i = 0; i < teddyCount; i++) {
+            let teddy = document.createElement("div");
+            teddy.className = "teddy";
+            teddy.innerHTML = "🧸";
 
-    <p>The day which I forgot the year before has become the most important day of my life.</p>
+            let size = Math.random() * 20 + 20;
+            teddy.style.fontSize = size + "px";
 
-    <p>Did I ever imagine that you would be mine this year? Nah😋  
-    But do I know that you will be mine forever?  
-    Always a very big YES!😍</p>
+            teddy.style.left = Math.random() * 100 + "vw";
+            teddy.style.animationDuration = Math.random() * 5 + 6 + "s";
+            teddy.style.animationDelay = Math.random() * 5 + "s";
 
-    <p>You may have had many different types of birthdays the last 27 years,  
-    but this year you have something special, something meaningful and something everlasting...</p>
+            document.body.appendChild(teddy);
+        }
+    </script>
 
-    <button onclick="nextSlide(1)">Next →</button>
-</div>
+    <!-- Slides -->
+    <div id="slide1" class="card">
+        <h2>Happy Birthday My Dearest Universe💜</h2>
+        <p>
+            The day which I forgot the year before has become the most important day of my life. 
+            Did I ever imagine that you would be mine this year? Nah😋
+            <br><br>
+            But do I know that you will be mine forever? Always a very big YES!😍
+            <br><br>
+            You may have many different types of birthdays in the last 27 years but this year you have something special, something meaningful and something everlasting....
+        </p>
+        <button onclick="nextSlide(1)">Next ➜</button>
+    </div>
 
-<!-- SLIDE 2 -->
-<div id="slide2" class="slide">
-    <div class="big-text">It's US💖💖💖</div>
+    <div id="slide2" class="card" style="display:none;">
+        <div class="bigText">It's US💖💖💖</div>
+        <button onclick="nextSlide(2)">Next ➜</button>
+    </div>
 
-    <button onclick="nextSlide(2)">Next →</button>
-</div>
+    <div id="slide3" class="card" style="display:none;">
+        <p>
+            Let's be like Rapunzel and Eugene AKA Flynn Ryder,
+            With fights, misunderstandings and all,
+            But LOVE.....
+            Loads and Loads that doesn't empty even after sharing them with our future self.
+            <br><br>
+            You are my rock in this life, until I die.
+            <br><br>
+            I love you with all my Heart and Soul, My dear Bujju💗
+        </p>
+    </div>
 
-<!-- SLIDE 3 -->
-<div id="slide3" class="slide">
-    <p>Let's be like Rapunzel and Eugene AKA Flynn Ryder,  
-    With fights, misunderstandings and all,  
-    But LOVE.....  
-    Loads and Loads that doesn't empty even after sharing them with our future self.</p>
-
-    <p>You are my rock in this life, until I die.</p>
-
-    <p><strong>I love you with all my Heart and Soul, My dear Bujju💗</strong></p>
-</div>
-
-<script>
-/* Slide switching */
-function nextSlide(num) {
-    document.getElementById("slide" + num).classList.remove("active");
-    document.getElementById("slide" + (num + 1)).classList.add("active");
-}
-
-/* Teddy animation generator */
-function createTeddy() {
-    const teddy = document.createElement("div");
-    teddy.classList.add("teddy");
-    teddy.innerHTML = "🧸";
-
-    teddy.style.left = Math.random() * 100 + "vw";
-    teddy.style.fontSize = (Math.random() * 14 + 26) + "px";
-    teddy.style.animationDuration = (Math.random() * 5 + 6) + "s";
-
-    document.body.appendChild(teddy);
-
-    setTimeout(() => teddy.remove(), 12000);
-}
-
-setInterval(createTeddy, 300);
-</script>
+    <script>
+        function nextSlide(n) {
+            document.getElementById("slide" + n).style.display = "none";
+            document.getElementById("slide" + (n + 1)).style.display = "block";
+        }
+    </script>
 
 </body>
 </html>
