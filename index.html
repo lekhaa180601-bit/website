@@ -36,14 +36,15 @@
     .teddy {
         position: absolute;
         font-size: 28px;
-        animation: floatUp linear infinite;
+        animation: fallDown linear infinite;
         opacity: 0.9;
         z-index: 0;
     }
 
-    @keyframes floatUp {
-        0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
-        100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+    /* Teddy falling from top to bottom */
+    @keyframes fallDown {
+        0% { transform: translateY(-20vh) rotate(0deg); opacity: 1; }
+        100% { transform: translateY(120vh) rotate(360deg); opacity: 0; }
     }
 
     @keyframes fadeIn {
@@ -84,36 +85,4 @@
 <body>
 
 <div class="center-box">
-    <h1>Happy Birthday My Love ❤️</h1>
-    <h2>Dharmaraj • 23 February</h2>
-    <div class="nicknames">
-        Thangam • Pattu • Bujji • Jillu <span class="heart">💜</span>
-    </div>
-</div>
-
-<script>
-    function createTeddy() {
-        const teddy = document.createElement("div");
-        teddy.classList.add("teddy");
-        teddy.innerHTML = "🧸";
-
-        let size = Math.random() * 20 + 15; 
-        teddy.style.fontSize = size + "px";
-
-        teddy.style.left = Math.random() * 100 + "vw";
-
-        let duration = Math.random() * 6 + 5;
-        teddy.style.animationDuration = duration + "s";
-
-        document.body.appendChild(teddy);
-
-        setTimeout(() => {
-            teddy.remove();
-        }, duration * 1000);
-    }
-
-    setInterval(createTeddy, 500);
-</script>
-
-</body>
-</html>
+    <h1>Happy Birthday My Lo
