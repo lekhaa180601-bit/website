@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Happy Birthday Dharmaraj ❤️</title>
+<title>Happy Birthday💜</title>
 
 <style>
     body {
@@ -10,35 +10,40 @@
         padding: 0;
         height: 100vh;
         overflow: hidden;
-        background: linear-gradient(135deg, #7aa9ff, #d4b3ff); /* blue + light purple gradient */
+        background: linear-gradient(135deg, #7aa9ff, #d4b3ff);
         font-family: 'Poppins', sans-serif;
         display: flex;
         justify-content: center;
         align-items: center;
-        text-align: center;
         position: relative;
     }
 
-    /* Center Box */
-    .center-box {
-        position: relative;
-        z-index: 10;
-        padding: 30px 40px;
-        border-radius: 20px;
+    .slide {
+        position: absolute;
         width: 70%;
-        max-height: 80vh;
-        overflow-y: auto;
-        background: rgba(255, 255, 255, 0.18);
+        max-width: 800px;
+        padding: 30px 40px;
+        background: rgba(255,255,255,0.18);
         backdrop-filter: blur(12px);
+        border-radius: 20px;
         box-shadow: 0 0 30px rgba(0,0,0,0.25);
-        animation: fadeIn 2s ease-out;
         color: white;
+        text-align: center;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.8s ease;
+        z-index: 10;
+    }
+
+    .slide.active {
+        opacity: 1;
+        transform: translateY(0);
     }
 
     h1 {
-        font-size: 2.2rem;
-        margin-bottom: 15px;
-        text-shadow: 0 0 10px rgba(0,0,0,0.7);
+        font-size: 2rem;
+        margin-bottom: 12px;
+        text-shadow: 0 0 12px rgba(0,0,0,0.6);
     }
 
     p {
@@ -48,30 +53,50 @@
         text-shadow: 0 0 6px rgba(0,0,0,0.6);
     }
 
-    /* Teddy floating animation */
+    .big-text {
+        font-size: 2.8rem;
+        font-weight: bold;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        text-shadow: 0 0 15px rgba(0,0,0,0.6);
+    }
+
+    button {
+        margin-top: 20px;
+        padding: 10px 22px;
+        font-size: 1.1rem;
+        border: none;
+        border-radius: 12px;
+        background: rgba(255,255,255,0.25);
+        color: white;
+        cursor: pointer;
+        backdrop-filter: blur(6px);
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: rgba(255,255,255,0.45);
+    }
+
+    /* Teddy animation */
     .teddy {
         position: absolute;
         font-size: 30px;
-        animation: fallDown linear infinite;
-        opacity: 1;
+        animation: fall linear infinite;
         text-shadow: 0 0 6px rgba(0,0,0,0.5);
     }
 
-    @keyframes fallDown {
+    @keyframes fall {
         0% { transform: translateY(-15vh) rotate(0deg); opacity: 1; }
-        100% { transform: translateY(110vh) rotate(360deg); opacity: 0.7; }
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
+        100% { transform: translateY(110vh) rotate(360deg); opacity: 0.8; }
     }
 </style>
 </head>
 
 <body>
 
-<div class="center-box">
+<!-- SLIDE 1 -->
+<div id="slide1" class="slide active">
     <h1>Happy Birthday My Dearest Universe💜</h1>
 
     <p>The day which I forgot the year before has become the most important day of my life.</p>
@@ -81,10 +106,20 @@
     Always a very big YES!😍</p>
 
     <p>You may have had many different types of birthdays the last 27 years,  
-    but this year you have something special, something meaningful and something everlasting....</p>
+    but this year you have something special, something meaningful and something everlasting...</p>
 
-    <p><strong>It's US💖💖💖</strong></p>
+    <button onclick="nextSlide(1)">Next →</button>
+</div>
 
+<!-- SLIDE 2 -->
+<div id="slide2" class="slide">
+    <div class="big-text">It's US💖💖💖</div>
+
+    <button onclick="nextSlide(2)">Next →</button>
+</div>
+
+<!-- SLIDE 3 -->
+<div id="slide3" class="slide">
     <p>Let's be like Rapunzel and Eugene AKA Flynn Ryder,  
     With fights, misunderstandings and all,  
     But LOVE.....  
@@ -96,29 +131,28 @@
 </div>
 
 <script>
-    function createTeddy() {
-        const teddy = document.createElement("div");
-        teddy.classList.add("teddy");
-        teddy.innerHTML = "🧸";
+/* Slide switching */
+function nextSlide(num) {
+    document.getElementById("slide" + num).classList.remove("active");
+    document.getElementById("slide" + (num + 1)).classList.add("active");
+}
 
-        let size = Math.random() * 14 + 26;
-        teddy.style.fontSize = size + "px";
+/* Teddy animation generator */
+function createTeddy() {
+    const teddy = document.createElement("div");
+    teddy.classList.add("teddy");
+    teddy.innerHTML = "🧸";
 
-        teddy.style.left = Math.random() * 100 + "vw";
+    teddy.style.left = Math.random() * 100 + "vw";
+    teddy.style.fontSize = (Math.random() * 14 + 26) + "px";
+    teddy.style.animationDuration = (Math.random() * 5 + 6) + "s";
 
-        let duration = Math.random() * 5 + 6;
-        teddy.style.animationDuration = duration + "s";
+    document.body.appendChild(teddy);
 
-        teddy.style.opacity = Math.random() * 0.4 + 0.9;
+    setTimeout(() => teddy.remove(), 12000);
+}
 
-        document.body.appendChild(teddy);
-
-        setTimeout(() => {
-            teddy.remove();
-        }, duration * 1000);
-    }
-
-    setInterval(createTeddy, 300);
+setInterval(createTeddy, 300);
 </script>
 
 </body>
