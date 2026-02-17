@@ -10,7 +10,7 @@
         padding: 0;
         height: 100vh;
         overflow: hidden;
-        background: linear-gradient(135deg, #4a5bd6, #6c3fb3); /* darker purple-blue gradient */
+        background: linear-gradient(135deg, #7aa9ff, #d4b3ff); /* blue + light purple gradient */
         font-family: 'Poppins', sans-serif;
         display: flex;
         justify-content: center;
@@ -19,7 +19,7 @@
         position: relative;
     }
 
-    /* CENTER BOX FIXED & CLEAR */
+    /* Center box */
     .center-box {
         position: relative;
         z-index: 10;
@@ -27,7 +27,7 @@
         border-radius: 20px;
         background: rgba(255, 255, 255, 0.18);
         backdrop-filter: blur(12px);
-        box-shadow: 0 0 30px rgba(0,0,0,0.4);
+        box-shadow: 0 0 30px rgba(0,0,0,0.25);
         animation: fadeIn 2s ease-out;
     }
 
@@ -35,13 +35,6 @@
         font-size: 3rem;
         color: white;
         text-shadow: 0 0 10px rgba(0,0,0,0.7);
-        margin-bottom: 10px;
-    }
-
-    h2 {
-        font-size: 1.4rem;
-        color: #fff;
-        opacity: 0.95;
         margin-bottom: 10px;
     }
 
@@ -62,7 +55,7 @@
         100% { transform: scale(1); }
     }
 
-    /* CLEARER TEDDY FLOATING DOWN */
+    /* Teddy floating animation */
     .teddy {
         position: absolute;
         font-size: 30px;
@@ -87,7 +80,6 @@
 
 <div class="center-box">
     <h1>Happy Birthday My Love ❤️</h1>
-    <h2>Dharmaraj • 23 February</h2>
     <div class="nicknames">Thangam • Pattu • Bujji • Jillu <span class="heart">💜</span></div>
 </div>
 
@@ -97,7 +89,7 @@
         teddy.classList.add("teddy");
         teddy.innerHTML = "🧸";
 
-        let size = Math.random() * 14 + 26; 
+        let size = Math.random() * 14 + 26;
         teddy.style.fontSize = size + "px";
 
         teddy.style.left = Math.random() * 100 + "vw";
@@ -105,6 +97,17 @@
         let duration = Math.random() * 5 + 6;
         teddy.style.animationDuration = duration + "s";
 
-        teddy.style.opacity = Math.random() * 0.4 + 0.8;
+        teddy.style.opacity = Math.random() * 0.4 + 0.9;
 
         document.body.appendChild(teddy);
+
+        setTimeout(() => {
+            teddy.remove();
+        }, duration * 1000);
+    }
+
+    setInterval(createTeddy, 300);
+</script>
+
+</body>
+</html>
