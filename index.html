@@ -15,8 +15,8 @@
         background-size: cover;
     }
 
-    /* Floating teddy bears */
-    .teddy {
+    /* Floating magical symbols */
+    .magic {
         position: absolute;
         font-size: 25px;
         animation: fall linear infinite;
@@ -61,7 +61,6 @@
         background: #d6d6ff;
     }
 
-    /* Slides */
     .slide { display: none; }
     .active { display: block; }
 </style>
@@ -70,16 +69,20 @@
 <body>
 
 <script>
-    // Create teddy bear rain
-    const bearEmoji = "🧸";
+    // Create magical falling symbols ❄️⚡
+    const symbols = ["❄️", "⚡"];
+
     for (let i = 0; i < 40; i++) {
-        let teddy = document.createElement("div");
-        teddy.classList.add("teddy");
-        teddy.innerHTML = bearEmoji;
-        teddy.style.left = Math.random() * 100 + "vw";
-        teddy.style.animationDuration = (4 + Math.random() * 5) + "s";
-        teddy.style.fontSize = (20 + Math.random() * 15) + "px";
-        document.body.appendChild(teddy);
+        let magic = document.createElement("div");
+        magic.classList.add("magic");
+
+        // Randomly select ❄️ or ⚡
+        magic.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+
+        magic.style.left = Math.random() * 100 + "vw";
+        magic.style.animationDuration = (4 + Math.random() * 5) + "s";
+        magic.style.fontSize = (20 + Math.random() * 15) + "px";
+        document.body.appendChild(magic);
     }
 
     // Slide Navigation
