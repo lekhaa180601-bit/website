@@ -13,6 +13,25 @@
 
         background: url('./hogwards2.jpeg') no-repeat center center fixed;
         background-size: cover;
+
+        /* Elder Wand Cursor */
+        cursor: url('elder-wand.png'), auto;
+    }
+
+    /* Flying Golden Snitch */
+    #snitch {
+        position: absolute;
+        width: 80px;
+        animation: flySnitch 10s linear infinite;
+        z-index: 9999;
+    }
+
+    @keyframes flySnitch {
+        0% { top: 10vh; left: -10vw; transform: scale(1) rotate(0deg); }
+        25% { top: 20vh; left: 30vw; transform: scale(1.1) rotate(20deg); }
+        50% { top: 5vh; left: 70vw; transform: scale(0.9) rotate(-20deg); }
+        75% { top: 30vh; left: 40vw; transform: scale(1.05) rotate(10deg); }
+        100% { top: 10vh; left: 110vw; transform: scale(1) rotate(0deg); }
     }
 
     /* Floating magical symbols */
@@ -67,6 +86,9 @@
 
 </head>
 <body>
+
+<!-- GOLDEN SNITCH -->
+<img id="snitch" src="./snitch.gif" alt="Golden Snitch">
 
 <script>
     // Create magical falling symbols ❄️⚡
