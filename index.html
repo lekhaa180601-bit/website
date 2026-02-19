@@ -14,39 +14,42 @@
         background: url('./hogwards2.jpeg') no-repeat center center fixed;
         background-size: cover;
 
-        /* Elder Wand Cursor */
-        cursor: url('elder-wand.png'), auto;
+        /* --- Elder Wand Cursor --- */
+        cursor: url('./elderwand.png') 0 0, auto;
     }
 
-    /* Flying Golden Snitch */
-    #snitch {
-        position: absolute;
-        width: 80px;
-        animation: flySnitch 10s linear infinite;
-        z-index: 9999;
-    }
-
-    @keyframes flySnitch {
-        0% { top: 10vh; left: -10vw; transform: scale(1) rotate(0deg); }
-        25% { top: 20vh; left: 30vw; transform: scale(1.1) rotate(20deg); }
-        50% { top: 5vh; left: 70vw; transform: scale(0.9) rotate(-20deg); }
-        75% { top: 30vh; left: 40vw; transform: scale(1.05) rotate(10deg); }
-        100% { top: 10vh; left: 110vw; transform: scale(1) rotate(0deg); }
-    }
-
-    /* Floating magical symbols */
+    /* Floating magical symbols ❄️⚡ */
     .magic {
         position: absolute;
         font-size: 25px;
         animation: fall linear infinite;
         opacity: 0.9;
+        pointer-events: none;
+        user-select: none;
     }
+
     @keyframes fall {
         0% { transform: translateY(-10vh); opacity: 1; }
         100% { transform: translateY(110vh); opacity: 0.7; }
     }
 
-    /* Center Box */
+    /* Golden Snitch */
+    .snitch {
+        position: absolute;
+        top: 20vh;
+        left: -80px;
+        width: 90px;
+        animation: fly 6s linear infinite;
+        pointer-events: none;
+    }
+
+    @keyframes fly {
+        0%   { transform: translateX(-10vw) rotate(0deg); }
+        50%  { transform: translateX(110vw) rotate(360deg); }
+        100% { transform: translateX(-10vw) rotate(720deg); }
+    }
+
+    /* Center Glass Box */
     .container {
         position: absolute;
         top: 50%;
@@ -82,28 +85,28 @@
 
     .slide { display: none; }
     .active { display: block; }
+
 </style>
 
 </head>
 <body>
 
-<!-- GOLDEN SNITCH -->
-<img id="snitch" src="./snitch.gif" alt="Golden Snitch">
+<!-- ⭐ Flying Golden Snitch -->
+<img src="./snitch.png" alt="Golden Snitch" class="snitch">
 
 <script>
-    // Create magical falling symbols ❄️⚡
+    // Create falling ❄️ + ⚡
     const symbols = ["❄️", "⚡"];
 
     for (let i = 0; i < 40; i++) {
         let magic = document.createElement("div");
         magic.classList.add("magic");
 
-        // Randomly select ❄️ or ⚡
         magic.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
-
         magic.style.left = Math.random() * 100 + "vw";
         magic.style.animationDuration = (4 + Math.random() * 5) + "s";
         magic.style.fontSize = (20 + Math.random() * 15) + "px";
+
         document.body.appendChild(magic);
     }
 
