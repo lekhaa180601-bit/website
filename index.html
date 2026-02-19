@@ -1,152 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Happy Birthday Dharmaraj 💜</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Dharmaraj 💜</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: "Poppins", sans-serif;
-            background: url('https://i.ibb.co/7gH5W3x/hogwarts-night.jpg') no-repeat center center/cover;
-            overflow: hidden;
-            height: 100vh;
+<style>
+    body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        overflow: hidden;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: background 1s ease-in-out;
+        position: relative;
+    }
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    /* Slide Backgrounds */
+    .bg1 {
+        background: url('hogwards.jpeg') no-repeat center center/cover;
+    }
+    .bg2 {
+        background: url('hogwards2.jpeg') no-repeat center center/cover;
+    }
+    .bg3 {
+        background: url('hogwards3.jpeg') no-repeat center center/cover;
+    }
 
-        /* Dark overlay for readability */
-        .overlay {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: rgba(20, 0, 40, 0.45);
-            top: 0;
-            left: 0;
-            z-index: 0;
-        }
+    /* Dark magical overlay */
+    .overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: rgba(5, 0, 20, 0.45);
+        top: 0;
+        left: 0;
+        z-index: 0;
+        pointer-events: none;
+    }
 
-        /* Floating Teddy Bears */
-        .teddy {
-            position: absolute;
-            font-size: 28px;
-            animation: floatDown linear infinite;
-            opacity: 0.9;
-            z-index: 1;
-        }
-
-        @keyframes floatDown {
-            0% { transform: translateY(-50px); opacity: 1; }
-            100% { transform: translateY(110vh); opacity: 0.3; }
-        }
-
-        /* Center Card */
-        .card {
-            width: 70%;
-            max-width: 700px;
-            background: rgba(255, 255, 255, 0.18);
-            padding: 30px;
-            border-radius: 18px;
-            backdrop-filter: blur(12px);
-            color: white;
-            text-align: center;
-            font-size: 20px;
-            line-height: 1.6;
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
-            animation: fadeIn 1s ease-in;
-            position: absolute;
-            z-index: 2;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.96); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .bigText {
-            font-size: 45px;
-            font-weight: 700;
-            color: #ffd6ff;
-            text-shadow: 0 0 12px #ff7bff;
-        }
-
-        button {
-            padding: 10px 25px;
-            margin-top: 20px;
-            border: none;
-            background: white;
-            color: #6a00ff;
-            font-size: 18px;
-            font-weight: 600;
-            border-radius: 30px;
-            cursor: pointer;
-            box-shadow: 0 0 10px #ffffff;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="overlay"></div>
-
-    <!-- Teddy Bears -->
-    <script>
-        const teddyCount = 22;
-        for (let i = 0; i < teddyCount; i++) {
-            let teddy = document.createElement("div");
-            teddy.className = "teddy";
-            teddy.innerHTML = "🧸";
-
-            let size = Math.random() * 18 + 18;
-            teddy.style.fontSize = size + "px";
-            teddy.style.left = Math.random() * 100 + "vw";
-            teddy.style.animationDuration = Math.random() * 6 + 7 + "s";
-            teddy.style.animationDelay = Math.random() * 5 + "s";
-
-            document.body.appendChild(teddy);
-        }
-    </script>
-
-    <!-- Slides -->
-    <div id="slide1" class="card">
-        <h2>Happy Birthday My Dearest Universe💜</h2>
-        <p>
-            The day which I forgot the year before has become the most important day of my life. 
-            Did I ever imagine that you would be mine this year? Nah😋
-            <br><br>
-            But do I know that you will be mine forever? Always a very big YES!😍
-            <br><br>
-            You may have many different types of birthdays in the last 27 years but this year you have something special, something meaningful and something everlasting....
-        </p>
-        <button onclick="nextSlide(1)">Do you wanna know😏?</button>
-    </div>
-
-    <div id="slide2" class="card" style="display:none;">
-        <div class="bigText">It's US💖💖💖</div>
-        <button onclick="nextSlide(2)">Shall I continue?</button>
-    </div>
-
-    <div id="slide3" class="card" style="display:none;">
-        <p>
-            Let's be like Rapunzel and Eugene AKA Flynn Ryder,
-            With fights, misunderstandings and all,
-            But LOVE.....
-            Loads and Loads that doesn't empty even after sharing them with our future self.
-            <br><br>
-            You are my rock in this life, until I die.
-            <br><br>
-            I love you with all my Heart and Soul, My dear Bujju💗
-        </p>
-    </div>
-
-    <script>
-        function nextSlide(n) {
-            document.getElementById("slide" + n).style.display = "none";
-            document.getElementById("slide" + (n + 1)).style.display = "block";
-        }
-    </script>
-
-</body>
-</html>
+    /* Floating teddy bears */
+    .teddy {
+        position: absolute;
+        font-size: 26px;
+        animation: floatDown linear infinite;
+        opacity: 0.9;
