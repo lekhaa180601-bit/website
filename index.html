@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday, Thangam 💜</title>
+<title>My Jillu 💜</title>
 
 <style>
     body {
@@ -11,22 +11,24 @@
         overflow: hidden;
         font-family: "Georgia", serif;
 
-        /* ⭐ Harry Potter Background (ONLY hogwards.jpeg) */
-        background: url('./hogwards.jpeg') no-repeat center center fixed;
+        background: url('./hogwards2.jpeg') no-repeat center center fixed;
         background-size: cover;
     }
 
-    /* Dark overlay for better text visibility */
-    .overlay {
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        background: rgba(0, 0, 0, 0.45);
-        z-index: 0;
+    /* Floating teddy bears */
+    .teddy {
+        position: absolute;
+        font-size: 25px;
+        animation: fall linear infinite;
+        opacity: 0.9;
+    }
+    @keyframes fall {
+        0% { transform: translateY(-10vh); opacity: 1; }
+        100% { transform: translateY(110vh); opacity: 0.7; }
     }
 
     /* Center Box */
-    .center-box {
+    .container {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -34,73 +36,98 @@
         width: 60%;
         max-width: 700px;
         background: rgba(0, 0, 0, 0.55);
-        padding: 30px;
-        border-radius: 15px;
-        text-align: center;
+        padding: 40px;
+        border-radius: 20px;
+        backdrop-filter: blur(8px);
         color: white;
-        font-size: 20px;
+        text-align: center;
         line-height: 1.6;
-        z-index: 2;
-        backdrop-filter: blur(4px);
     }
 
-    .slide { display: none; }
-    .slide.active { display: block; }
-
-    /* Next Button */
-    .next-btn {
+    button {
         margin-top: 25px;
-        padding: 12px 25px;
-        background: #b38bff;
-        color: white;
-        border: none;
-        border-radius: 10px;
+        padding: 12px 28px;
         font-size: 18px;
+        border: none;
+        border-radius: 30px;
+        background: white;
+        color: black;
         cursor: pointer;
         transition: 0.3s;
+        font-weight: bold;
+    }
+    button:hover {
+        transform: scale(1.08);
+        background: #d6d6ff;
     }
 
-    .next-btn:hover {
-        background: #d5b3ff;
-    }
-
-    /* Floating Teddy Bears */
-    .teddy {
-        position: fixed;
-        top: -50px;
-        width: 40px;
-        height: 40px;
-        opacity: 0.9;
-        z-index: 1;
-        animation: fall 7s linear infinite;
-    }
-
-    @keyframes fall {
-        0% { transform: translateY(-50px) rotate(0deg); }
-        100% { transform: translateY(110vh) rotate(360deg); }
-    }
+    /* Slides */
+    .slide { display: none; }
+    .active { display: block; }
 </style>
-</head>
 
+</head>
 <body>
 
-<div class="overlay"></div>
-
-<!-- Floating Teddy Bears -->
 <script>
-    const teddyEmoji = "🧸";
-    for (let i = 0; i < 20; i++) {
+    // Create teddy bear rain
+    const bearEmoji = "🧸";
+    for (let i = 0; i < 40; i++) {
         let teddy = document.createElement("div");
         teddy.classList.add("teddy");
+        teddy.innerHTML = bearEmoji;
         teddy.style.left = Math.random() * 100 + "vw";
-        teddy.style.animationDuration = (6 + Math.random() * 5) + "s";
-        teddy.innerHTML = teddyEmoji;
+        teddy.style.animationDuration = (4 + Math.random() * 5) + "s";
+        teddy.style.fontSize = (20 + Math.random() * 15) + "px";
         document.body.appendChild(teddy);
+    }
+
+    // Slide Navigation
+    function showSlide(n) {
+        document.querySelectorAll(".slide").forEach(s => s.classList.remove("active"));
+        document.getElementById("slide" + n).classList.add("active");
     }
 </script>
 
-<!-- Slides -->
-<div class="center-box">
+<div class="container">
 
-    <!-- Slide 1 -->
-    <div class="slide activ
+    <!-- SLIDE 1 -->
+    <div id="slide1" class="slide active">
+        <h2>Happy Birthday My Dearest Universe💜</h2>
+        <p>
+            The day which I forgot the year before has become the most important day of my life. 
+            Did I ever imagine that you would be mine this year? Nah😋 <br><br>
+
+            But do I know that you will be mine forever? Always a very big YES!😍 <br><br>
+
+            You may have many different types of birthdays in the last 27 years but this year you have something special, 
+            something meaningful and something everlasting....
+        </p>
+
+        <button onclick="showSlide(2)">Do you wanna know😏?</button>
+    </div>
+
+    <!-- SLIDE 2 -->
+    <div id="slide2" class="slide">
+        <h1 style="font-size: 45px; font-weight: bold;">It's US💖💖💖</h1>
+        <button onclick="showSlide(3)">Shall I continue?</button>
+    </div>
+
+    <!-- SLIDE 3 -->
+    <div id="slide3" class="slide">
+        <p>
+            Let's be like Rapunzel and Eugene AKA Flynn Ryder, <br>
+            With fights, misunderstandings and all, <br>
+            But LOVE... <br>
+            Loads and Loads that doesn't empty even after sharing them with our future self. <br><br>
+
+            You are my rock in this life, until I die. <br><br>
+
+            I love you with all my Heart and Soul, My dear Bujju💗
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>
