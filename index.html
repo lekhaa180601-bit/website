@@ -14,7 +14,7 @@
         background: url('./hogwards2.jpeg') no-repeat center center fixed;
         background-size: cover;
 
-        /* --- Elder Wand Cursor --- */
+        /* Elder Wand Cursor */
         cursor: url('./elderwand.png') 0 0, auto;
     }
 
@@ -33,23 +33,7 @@
         100% { transform: translateY(110vh); opacity: 0.7; }
     }
 
-    /* Golden Snitch */
-    .snitch {
-        position: absolute;
-        top: 20vh;
-        left: -80px;
-        width: 90px;
-        animation: fly 6s linear infinite;
-        pointer-events: none;
-    }
-
-    @keyframes fly {
-        0%   { transform: translateX(-10vw) rotate(0deg); }
-        50%  { transform: translateX(110vw) rotate(360deg); }
-        100% { transform: translateX(-10vw) rotate(720deg); }
-    }
-
-    /* Center Glass Box */
+    /* Main Box */
     .container {
         position: absolute;
         top: 50%;
@@ -91,9 +75,6 @@
 </head>
 <body>
 
-<!-- ⭐ Flying Golden Snitch -->
-<img src="./snitch.png" alt="Golden Snitch" class="snitch">
-
 <script>
     // Create falling ❄️ + ⚡
     const symbols = ["❄️", "⚡"];
@@ -110,7 +91,6 @@
         document.body.appendChild(magic);
     }
 
-    // Slide Navigation
     function showSlide(n) {
         document.querySelectorAll(".slide").forEach(s => s.classList.remove("active"));
         document.getElementById("slide" + n).classList.add("active");
