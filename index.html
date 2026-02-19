@@ -18,15 +18,15 @@
         position: relative;
     }
 
-    /* Slide Backgrounds */
+    /* Corrected Background Paths */
     .bg1 {
-        background: url('hogwards.jpeg') no-repeat center center/cover;
+        background: url('website/hogwards.jpeg') no-repeat center center/cover;
     }
     .bg2 {
-        background: url('hogwards2.jpeg') no-repeat center center/cover;
+        background: url('website/hogwards2.jpeg') no-repeat center center/cover;
     }
     .bg3 {
-        background: url('hogwards3.jpeg') no-repeat center center/cover;
+        background: url('website/hogwards3.jpeg') no-repeat center center/cover;
     }
 
     /* Dark magical overlay */
@@ -41,9 +41,123 @@
         pointer-events: none;
     }
 
-    /* Floating teddy bears */
     .teddy {
         position: absolute;
         font-size: 26px;
         animation: floatDown linear infinite;
         opacity: 0.9;
+        z-index: 1;
+    }
+
+    @keyframes floatDown {
+        0% { transform: translateY(-50px); opacity: 1; }
+        100% { transform: translateY(110vh); opacity: 0.3; }
+    }
+
+    .card {
+        width: 70%;
+        max-width: 700px;
+        background: rgba(255, 255, 255, 0.20);
+        padding: 35px;
+        border-radius: 20px;
+        backdrop-filter: blur(12px);
+        color: white;
+        text-align: center;
+        font-size: 20px;
+        line-height: 1.6;
+        box-shadow: 0 0 25px rgba(255, 255, 255, 0.45);
+        animation: fadeIn 1s ease-in;
+        position: relative;
+        z-index: 3;
+        display: none;
+    }
+
+    .active {
+        display: block !important;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.96); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    .bigText {
+        font-size: 50px;
+        font-weight: 800;
+        color: #ffddff;
+        text-shadow: 0 0 15px #ff91ff;
+    }
+
+    button {
+        padding: 12px 30px;
+        margin-top: 20px;
+        border: none;
+        background: white;
+        color: #6a00ff;
+        font-size: 18px;
+        font-weight: 600;
+        border-radius: 30px;
+        cursor: pointer;
+        box-shadow: 0 0 12px #ffffff;
+    }
+</style>
+</head>
+
+<body class="bg1">
+<div class="overlay"></div>
+
+<!-- Slide 1 -->
+<div class="card active" id="slide1">
+    <h2>Happy Birthday My Dearest Universe💜</h2>
+    The day which I forgot the year before has become the most important day of my life. 
+    Did I ever imagine that you would be mine this year? Nah😋 <br><br>
+    But do I know that you will be mine forever? Always a very big YES!😍 <br><br>
+    You may have many different types of birthdays in the last 27 years but this year you have something special, something meaningful and something everlasting....
+    <br><br>
+    <button onclick="nextSlide(1)">Do you wanna know😏?</button>
+</div>
+
+<!-- Slide 2 -->
+<div class="card" id="slide2">
+    <div class="bigText">It's US💖💖💖</div>
+    <button onclick="nextSlide(2)">Shall I continue?</button>
+</div>
+
+<!-- Slide 3 -->
+<div class="card" id="slide3">
+    Let's be like Rapunzel and Eugene AKA Flynn Ryder,<br>
+    With fights, misunderstandings and all,<br>
+    But LOVE..... Loads and Loads that doesn't empty even after sharing them with our future self. <br><br>
+
+    You are my rock in this life, until I die. <br><br>
+
+    I love you with all my Heart and Soul, My dear Bujju💗
+</div>
+
+<script>
+    function nextSlide(n) {
+        document.getElementById("slide" + n).classList.remove("active");
+        document.getElementById("slide" + (n + 1)).classList.add("active");
+
+        if (n === 1) document.body.className = "bg2";
+        if (n === 2) document.body.className = "bg3";
+    }
+
+    const teddyCount = 25;
+    for (let i = 0; i < teddyCount; i++) {
+        let teddy = document.createElement("div");
+        teddy.className = "teddy";
+        teddy.innerHTML = "🧸";
+
+        let size = Math.random() * 18 + 18;
+        teddy.style.fontSize = size + "px";
+        teddy.style.left = Math.random() * 100 + "vw";
+        teddy.style.animationDuration = Math.random() * 6 + 7 + "s";
+        teddy.style.animationDelay = Math.random() * 5 + "s";
+
+        document.body.appendChild(teddy);
+    }
+</script>
+
+</body>
+</html>
