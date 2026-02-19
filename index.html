@@ -10,10 +10,11 @@
         margin: 0;
         overflow: hidden;
         font-family: "Georgia", serif;
-
         background: url('./hogwards2.jpeg') no-repeat center center fixed;
         background-size: cover;
 
+        /* Elder wand cursor */
+        cursor: url('./elderwand.png') 0 0, auto;
     }
 
     /* Floating magical symbols ❄️⚡ */
@@ -22,16 +23,13 @@
         font-size: 25px;
         animation: fall linear infinite;
         opacity: 0.9;
-        pointer-events: none;
-        user-select: none;
     }
-
     @keyframes fall {
         0% { transform: translateY(-10vh); opacity: 1; }
         100% { transform: translateY(110vh); opacity: 0.7; }
     }
 
-    /* Main Box */
+    /* Center Box */
     .container {
         position: absolute;
         top: 50%;
@@ -67,14 +65,13 @@
 
     .slide { display: none; }
     .active { display: block; }
-
 </style>
 
 </head>
 <body>
 
 <script>
-    // Create falling ❄️ + ⚡
+    /* Create floating ❄️ and ⚡ symbols */
     const symbols = ["❄️", "⚡"];
 
     for (let i = 0; i < 40; i++) {
@@ -89,6 +86,7 @@
         document.body.appendChild(magic);
     }
 
+    /* Slide Navigation */
     function showSlide(n) {
         document.querySelectorAll(".slide").forEach(s => s.classList.remove("active"));
         document.getElementById("slide" + n).classList.add("active");
