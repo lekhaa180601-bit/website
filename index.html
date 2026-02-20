@@ -12,8 +12,6 @@
         font-family: "Georgia", serif;
         background: url('./hogwards2.jpeg') no-repeat center center fixed;
         background-size: cover;
-
-        /* Elder wand cursor */
         cursor: url('./elderwand.png') 0 0, auto;
     }
 
@@ -29,23 +27,18 @@
         100% { transform: translateY(110vh); opacity: 0.7; }
     }
 
-    /* OUTER WRAPPER FOR FINAL SLIDE (content box + image box) */
-    .final-wrapper {
+    /* --- CENTERED MAIN CONTAINER (for Slide 1 & 2) --- */
+    .main-wrapper {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        display: none;
-        width: 90%;
-        max-width: 1200px;
-        justify-content: center;
-        align-items: center;
-        gap: 30px;
+        width: 60%;
+        max-width: 750px;
     }
 
-    /* Content box */
     .container {
-        width: 50%;
+        width: 100%;
         background: rgba(0, 0, 0, 0.55);
         padding: 40px;
         border-radius: 20px;
@@ -78,7 +71,6 @@
         margin-top: 25px;
         padding: 12px 28px;
         font-size: 18px;
-        border: none;
         border-radius: 30px;
         background: white;
         color: black;
@@ -89,7 +81,30 @@
     .slide { display: none; }
     .active { display: block; }
 
-    /* Photo outside container */
+    /* --- FINAL SLIDE LAYOUT (slide 3) --- */
+    .final-wrapper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: none;
+        width: 90%;
+        max-width: 1200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .final-box {
+        width: 50%;
+        background: rgba(0, 0, 0, 0.55);
+        padding: 40px;
+        border-radius: 20px;
+        color: white;
+        line-height: 1.6;
+    }
+
     .final-photo {
         width: 50%;
         height: 100%;
@@ -97,21 +112,21 @@
         justify-content: center;
         align-items: center;
     }
+
     .final-photo img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
         border-radius: 20px;
+        object-fit: cover;
         box-shadow: 0 0 15px rgba(255,255,255,0.4);
     }
-
 </style>
 
 </head>
 <body>
 
 <script>
-    /* Floating ❄️⚡ */
+    /* Floating symbols ❄️⚡ */
     const symbols = ["❄️", "⚡"];
     for (let i = 0; i < 40; i++) {
         let magic = document.createElement("div");
@@ -125,20 +140,22 @@
 
     function showSlide(n) {
         document.querySelectorAll(".slide").forEach(s => s.classList.remove("active"));
-        document.getElementById("slide" + n).classList.add("active");
 
         if (n === 3) {
-            document.querySelector(".container").style.display = "none";
+            document.querySelector(".main-wrapper").style.display = "none";
             document.querySelector(".final-wrapper").style.display = "flex";
+        } else {
+            document.querySelector(".main-wrapper").style.display = "block";
+            document.getElementById("slide" + n).classList.add("active");
         }
     }
 </script>
 
-<!-- FINAL SLIDE WRAPPER (HIDDEN AT FIRST) -->
+<!-- FINAL SLIDE WRAPPER (hidden initially) -->
 <div class="final-wrapper">
 
-    <!-- LEFT SIDE CONTENT BOX -->
-    <div class="container">
+    <!-- LEFT CONTENT BOX -->
+    <div class="final-box">
         <p style="text-align:left;">
             Let me be the person whom you want to spend your entire life with! <br><br>
             I know this can also be earliest, <br>
@@ -150,43 +167,45 @@
 
             Happiest Birthday my thangame in Advance.
         </p>
-
         <div class="fake-button">You can't deny that I am cool😎</div>
     </div>
 
-    <!-- RIGHT SIDE PHOTO -->
+    <!-- RIGHT IMAGE BOX -->
     <div class="final-photo">
         <img src="./photo1.jpg">
     </div>
 
 </div>
 
-<!-- MAIN CONTAINER FOR SLIDES 1 & 2 -->
-<div class="container">
+<!-- SLIDE 1 & 2 WRAPPER -->
+<div class="main-wrapper">
 
-    <!-- SLIDE 1 -->
-    <div id="slide1" class="slide active">
-        <h2>Hi Dearest🥰</h2>
-        <p>
-            I know I have never mentioned anything about your day till now, <br><br>
-            Let me start on the final weekday that leads to YOUR DAY.
-        </p>
+    <div class="container">
 
-        <button onclick="showSlide(2)">Shall I tell you something secret?</button>
+        <!-- SLIDE 1 -->
+        <div id="slide1" class="slide active">
+            <h2>Hi Dearest🥰</h2>
+            <p>
+                I know I have never mentioned anything about your day till now, <br><br>
+                Let me start on the final weekday that leads to YOUR DAY.
+            </p>
+
+            <button onclick="showSlide(2)">Shall I tell you something secret?</button>
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div id="slide2" class="slide">
+            <p>
+                Dharmaraj is a person who literally stole my heart from the day our eyes met. <br><br>
+                One year ago, you stole the 'schedule' of my life and replaced it with something different. <br><br>
+                You always make my day into a rollercoaster ride with a different track, <br>
+                Every Single Day!
+            </p>
+
+            <button onclick="showSlide(3)">Shall I continue?</button>
+        </div>
+
     </div>
-
-    <!-- SLIDE 2 -->
-    <div id="slide2" class="slide">
-        <p>
-            Dharmaraj is a person who literally stole my heart from the day our eyes met. <br><br>
-            One year ago, you stole the 'schedule' of my life and replaced it with something different. <br><br>
-            You always make my day into a rollercoaster ride with a different track, <br>
-            Every Single Day!
-        </p>
-
-        <button onclick="showSlide(3)">Shall I continue?</button>
-    </div>
-
 </div>
 
 </body>
