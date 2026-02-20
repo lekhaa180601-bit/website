@@ -3,215 +3,178 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Jillu 💜</title>
+<title>For My Love 💕</title>
 
 <style>
     body {
         margin: 0;
-        overflow: hidden;
-        font-family: "Georgia", serif;
-        background: url('./hogwards2.jpeg') no-repeat center center fixed;
+        padding: 0;
+        background-image: url('bg.jpg');
         background-size: cover;
-        cursor: url('./elderwand.png') 0 0, auto;
+        background-position: center;
+        font-family: 'Georgia', serif;
+        overflow: hidden;
     }
 
-    /* Floating symbols */
-    .magic {
-        position: absolute;
-        font-size: 25px;
-        animation: fall linear infinite;
-        opacity: 0.9;
-    }
-    @keyframes fall {
-        0% { transform: translateY(-10vh); opacity: 1; }
-        100% { transform: translateY(110vh); opacity: 0.7; }
+    /* SLIDES WRAPPER */
+    .slides {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        transition: transform 1s ease;
     }
 
-    /* SLIDE 1 & 2 CENTER BOX */
-    .main-wrapper {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+    .slide {
+        width: 100vw;
+        height: 100vh;
+        flex-shrink: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+
+    /* COMMON CONTENT BOX */
+    .content-box {
         width: 60%;
         max-width: 750px;
-        display: block;
-        z-index: 5;
-    }
-
-    .container {
-        width: 100%;
-        background: rgba(0, 0, 0, 0.55);
         padding: 40px;
-        border-radius: 20px;
-        backdrop-filter: blur(8px);
+        background: rgba(0,0,0,0.45);
+        backdrop-filter: blur(12px);
         color: white;
+        border-radius: 25px;
         text-align: center;
+        font-size: 22px;
         line-height: 1.6;
     }
 
-    button {
+    /* SLIDE 3 SPECIAL LAYOUT */
+    .slide3-container {
+        width: 85%;
+        height: 80%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .slide3-content,
+    .slide3-image-box {
+        width: 48%;
+        height: 100%;
+        background: rgba(0,0,0,0.45);
+        backdrop-filter: blur(12px);
+        color: white;
+        padding: 40px;
+        border-radius: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 22px;
+        line-height: 1.6;
+    }
+
+    .slide3-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 25px;
+    }
+
+    /* BUTTON */
+    .next-btn {
         margin-top: 25px;
-        padding: 12px 28px;
-        font-size: 18px;
+        padding: 15px 35px;
+        font-size: 20px;
         border-radius: 30px;
-        background: white;
-        color: black;
+        border: none;
         cursor: pointer;
         font-weight: bold;
-        border: none;
-        transition: 0.3s;
-    }
-    button:hover {
-        transform: scale(1.08);
-        background: #d6d6ff;
-    }
-
-    .fake-button {
-        display: inline-block;
-        margin-top: 25px;
-        padding: 12px 28px;
-        font-size: 18px;
-        border-radius: 30px;
-        background: white;
-        color: black;
-        font-weight: bold;
-    }
-
-    .slide { display: none; }
-    .active { display: block; }
-
-    /* SLIDE 3 LAYOUT */
-    .final-wrapper {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 90%;
-        max-width: 1200px;
-        display: none; /* Hidden by default */
-        z-index: 10; /* Higher than others */
-        gap: 30px;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .final-box {
-        width: 50%;
-        background: rgba(0, 0, 0, 0.55);
-        padding: 40px;
-        border-radius: 20px;
-        color: white;
-        line-height: 1.6;
-    }
-
-    .final-photo {
-        width: 50%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .final-photo img {
-        width: 100%;
-        height: 100%;
-        border-radius: 20px;
-        object-fit: cover;
-        box-shadow: 0 0 15px rgba(255,255,255,0.4);
     }
 </style>
-
 </head>
+
 <body>
 
+<!-- 🔊 BACKGROUND MUSIC -->
+<audio id="bgMusic" src="unnale.mpeg" loop></audio>
+
 <script>
-    /* Floating ❄️⚡ symbols */
-    const symbols = ["❄️", "⚡"];
-    for (let i = 0; i < 40; i++) {
-        let magic = document.createElement("div");
-        magic.classList.add("magic");
-        magic.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
-        magic.style.left = Math.random() * 100 + "vw";
-        magic.style.animationDuration = (4 + Math.random() * 5) + "s";
-        magic.style.fontSize = (20 + Math.random() * 15) + "px";
-        document.body.appendChild(magic);
-    }
+    // Autoplay workaround for Chrome & Safari
+    document.addEventListener("DOMContentLoaded", function () {
+        const audio = document.getElementById("bgMusic");
+        audio.volume = 1.0;
 
-    /* FIXED SLIDE NAVIGATION */
-    function showSlide(n) {
-
-        /* Hide all slide 1 & 2 screens */
-        document.querySelectorAll(".slide").forEach(s => s.classList.remove("active"));
-
-        if (n === 3) {
-            /* Hide slide 1 & 2 wrapper */
-            document.querySelector(".main-wrapper").style.display = "none";
-
-            /* Show final slide wrapper */
-            document.querySelector(".final-wrapper").style.display = "flex";
-
-        } else {
-            /* Show slide 1 or 2 */
-            document.querySelector(".main-wrapper").style.display = "block";
-            document.querySelector(".final-wrapper").style.display = "none";
-
-            document.getElementById("slide" + n).classList.add("active");
-        }
-    }
+        // First try to play (may fail due to autoplay policy)
+        audio.play().catch(() => {
+            // Try muted autoplay then unmute after start
+            audio.muted = true;
+            audio.play().then(() => {
+                setTimeout(() => {
+                    audio.muted = false;
+                }, 500);
+            });
+        });
+    });
 </script>
 
-<!-- FINAL SLIDE (3) -->
-<div class="final-wrapper">
+<!-- SLIDES -->
+<div class="slides" id="slides">
 
-    <div class="final-box">
-        <p style="text-align:left;">
-            Let me be the person whom you want to spend your entire life with! <br><br>
-            I know this can also be earliest, <br>
-            but still I want to tell you, <br><br>
-
-            <b>I Love You my BuBu❤️</b> <br><br>
-
-            You are my world in every way possible🥹. <br><br>
-
-            Happiest Birthday my thangame in Advance.
-        </p>
-
-        <div class="fake-button">You can't deny that I am cool😎</div>
+    <!-- Slide 1 -->
+    <div class="slide">
+        <div class="content-box">
+            <h1>Hi Dearest 🥰</h1>
+            <p>I know I have never mentioned anything about your day till now.</p>
+            <p>Let me start on the final weekday that leads to YOUR DAY.</p>
+            <button class="next-btn" onclick="nextSlide()">Shall I tell you something secret?</button>
+        </div>
     </div>
 
-    <div class="final-photo">
-        <img src="./photo1.jpg">
+    <!-- Slide 2 -->
+    <div class="slide">
+        <div class="content-box">
+            <p>Let me be the person whom you want to spend your entire life with!</p>
+            <p>I know this sounds crazy but still I want to say it 😳</p>
+            <p><b>I Love You So Much ❤️</b></p>
+            <button class="next-btn" onclick="nextSlide()">Next →</button>
+        </div>
+    </div>
+
+    <!-- Slide 3 (Content Left + Photo Right) -->
+    <div class="slide">
+        <div class="slide3-container">
+            
+            <!-- LEFT CONTENT -->
+            <div class="slide3-content">
+                <p>
+                    You and I have been through so much…  
+                    but every moment made me realize one thing…  
+                    <br><br>
+                    <b>You are my forever person 💗</b>
+                </p>
+            </div>
+
+            <!-- RIGHT PHOTO -->
+            <div class="slide3-image-box">
+                <img src="couple.jpg" class="slide3-image">
+            </div>
+
+        </div>
     </div>
 
 </div>
 
-<!-- SLIDE 1 & 2 -->
-<div class="main-wrapper">
+<!-- SLIDE SCRIPT -->
+<script>
+    let currentSlide = 0;
 
-    <div class="container">
-
-        <div id="slide1" class="slide active">
-            <h2>Hi Dearest🥰</h2>
-            <p>
-                I know I have never mentioned anything about your day till now, <br><br>
-                Let me start on the final weekday that leads to YOUR DAY.
-            </p>
-            <button onclick="showSlide(2)">Shall I tell you something secret?</button>
-        </div>
-
-        <div id="slide2" class="slide">
-            <p>
-                Dharmaraj is a person who literally stole my heart from the day our eyes met. <br><br>
-                One year ago, you stole the 'schedule' of my life and replaced it with something different. <br><br>
-                You always make my day into a rollercoaster ride with a different track, <br>
-                Every Single Day!
-            </p>
-            <button onclick="showSlide(3)">Shall I continue?</button>
-        </div>
-
-    </div>
-</div>
+    function nextSlide() {
+        currentSlide++;
+        document.getElementById("slides").style.transform =
+            `translateX(-${currentSlide * 100}vw)`;
+    }
+</script>
 
 </body>
 </html>
