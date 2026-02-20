@@ -36,7 +36,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         width: 60%;
-        max-width: 700px;
+        max-width: 750px;
         background: rgba(0, 0, 0, 0.55);
         padding: 40px;
         border-radius: 20px;
@@ -63,8 +63,40 @@
         background: #d6d6ff;
     }
 
+    /* Fake button (non-clickable for last line) */
+    .fake-button {
+        display: inline-block;
+        margin-top: 25px;
+        padding: 12px 28px;
+        font-size: 18px;
+        border: none;
+        border-radius: 30px;
+        background: white;
+        color: black;
+        font-weight: bold;
+        opacity: 0.9;
+    }
+
     .slide { display: none; }
     .active { display: block; }
+
+    /* Slide 3 layout (text left, image right) */
+    .final-layout {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 25px;
+        text-align: left;
+    }
+    .final-text {
+        width: 55%;
+    }
+    .final-img {
+        width: 40%;
+        border-radius: 15px;
+        box-shadow: 0 0 15px rgba(255,255,255,0.4);
+    }
+
 </style>
 
 </head>
@@ -97,38 +129,54 @@
 
     <!-- SLIDE 1 -->
     <div id="slide1" class="slide active">
-        <h2>Happy Birthday My Dearest Universe💜</h2>
+        <h2>Hi Dearest🥰</h2>
         <p>
-            The day which I forgot the year before has become the most important day of my life. 
-            Did I ever imagine that you would be mine this year? Nah😋 <br><br>
-
-            But do I know that you will be mine forever? Always a very big YES!😍 <br><br>
-
-            You may have many different types of birthdays in the last 27 years but this year you have something special, 
-            something meaningful and something everlasting....
+            I know I have never mentioned anything about your day till now, <br><br>
+            Let me start on the final weekday that leads to YOUR DAY.
         </p>
 
-        <button onclick="showSlide(2)">Do you wanna know😏?</button>
+        <button onclick="showSlide(2)">Shall I tell you something secret?</button>
     </div>
 
     <!-- SLIDE 2 -->
     <div id="slide2" class="slide">
-        <h1 style="font-size: 45px; font-weight: bold;">It's US💖💖💖</h1>
+        <p>
+            Dharmaraj is a person who literally stole my heart from the day our eyes met. <br><br>
+            One year ago, you stole the 'schedule' of my life and replaced it with something different. <br><br>
+            You always make my day into a rollercoaster ride with a different track, <br>
+            Every Single Day!
+        </p>
+
         <button onclick="showSlide(3)">Shall I continue?</button>
     </div>
 
     <!-- SLIDE 3 -->
     <div id="slide3" class="slide">
-        <p>
-            Let's be like Rapunzel and Eugene AKA Flynn Ryder, <br>
-            With fights, misunderstandings and all, <br>
-            But LOVE... <br>
-            Loads and Loads that doesn't empty even after sharing them with our future self. <br><br>
 
-            You are my rock in this life, until I die. <br><br>
+        <div class="final-layout">
 
-            I love you with all my Heart and Soul, My dear Bujju💗
-        </p>
+            <!-- LEFT TEXT -->
+            <div class="final-text">
+                <p>
+                    Let me be the person whom you want to spend your entire life with! <br><br>
+                    I know this can also be earliest, <br>
+                    but still I want to tell you, <br><br>
+
+                    <b>I Love You my BuBu❤️</b> <br><br>
+
+                    You are my world in every way possible🥹. <br><br>
+
+                    Happiest Birthday my thangame in Advance.
+                </p>
+
+                <div class="fake-button">You can't deny that I am cool😎</div>
+            </div>
+
+            <!-- RIGHT IMAGE -->
+            <img src="./photo1.jpg" class="final-img">
+
+        </div>
+
     </div>
 
 </div>
