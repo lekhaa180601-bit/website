@@ -89,8 +89,8 @@
         transform: translate(-50%, -50%);
         width: 90%;
         max-width: 1200px;
-        display: none; /* Hidden by default */
-        z-index: 10; /* Higher than others */
+        display: none;
+        z-index: 10;
         gap: 30px;
         justify-content: center;
         align-items: center;
@@ -120,10 +120,41 @@
         object-fit: cover;
         box-shadow: 0 0 15px rgba(255,255,255,0.4);
     }
+
+    /* iPhone Sound Unlock Overlay */
+    #soundUnlock {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100vw; height: 100vh;
+        background: rgba(0,0,0,0.7);
+        color: white;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        z-index: 9999;
+        text-align: center;
+        font-size: 22px;
+        padding: 20px;
+    }
+
+    #soundUnlock button {
+        margin-top: 20px;
+        font-size: 20px;
+    }
 </style>
 
 </head>
 <body>
+
+<!-- 🔊 Background Music -->
+<audio id="bgMusic" src="./unnale.mpeg" loop></audio>
+
+<!-- iOS Tap-to-Enable-Sound -->
+<div id="soundUnlock">
+    🌟 Tap to enable magical background music 🌟  
+    <button onclick="enableAudio()">Tap to Continue</button>
+</div>
 
 <script>
     /* Floating ❄️⚡ symbols */
@@ -138,24 +169,40 @@
         document.body.appendChild(magic);
     }
 
+    /* Detect iPhone / iPad */
+    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    const audio = document.getElementById("bgMusic");
+
+    document.addEventListener("DOMContentLoaded", () => {
+        if (isIOS) {
+            // iOS needs user interaction
+            document.getElementById("soundUnlock").style.display = "flex";
+        } else {
+            // Android & Desktop autoplay
+            audio.play().catch(() => {});
+        }
+    });
+
+    function enableAudio() {
+        const overlay = document.getElementById("soundUnlock");
+        overlay.style.display = "none";
+
+        audio.muted = false;
+        audio.play();
+    }
+
     /* FIXED SLIDE NAVIGATION */
     function showSlide(n) {
 
-        /* Hide all slide 1 & 2 screens */
         document.querySelectorAll(".slide").forEach(s => s.classList.remove("active"));
 
         if (n === 3) {
-            /* Hide slide 1 & 2 wrapper */
             document.querySelector(".main-wrapper").style.display = "none";
-
-            /* Show final slide wrapper */
             document.querySelector(".final-wrapper").style.display = "flex";
-
         } else {
-            /* Show slide 1 or 2 */
             document.querySelector(".main-wrapper").style.display = "block";
             document.querySelector(".final-wrapper").style.display = "none";
-
             document.getElementById("slide" + n).classList.add("active");
         }
     }
