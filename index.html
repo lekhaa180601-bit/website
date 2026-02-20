@@ -137,18 +137,16 @@
         font-size: 22px;
         padding: 20px;
     }
-
-    #soundUnlock button {
-        margin-top: 20px;
-        font-size: 20px;
-    }
 </style>
 
 </head>
 <body>
 
 <!-- 🔊 Background Music -->
-<audio id="bgMusic" src="./unnale.mpeg" loop></audio>
+<audio id="bgMusic" loop playsinline>
+    <source src="./unnale.mpeg" type="audio/mpeg">
+    <source src="./unnale.mpeg" type="audio/mp3">
+</audio>
 
 <!-- iOS Tap-to-Enable-Sound -->
 <div id="soundUnlock">
@@ -169,32 +167,29 @@
         document.body.appendChild(magic);
     }
 
-    /* Detect iPhone / iPad */
     const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-
     const audio = document.getElementById("bgMusic");
 
     document.addEventListener("DOMContentLoaded", () => {
+        audio.muted = true;
+
         if (isIOS) {
-            // iOS needs user interaction
             document.getElementById("soundUnlock").style.display = "flex";
         } else {
-            // Android & Desktop autoplay
-            audio.play().catch(() => {});
+            audio.play().then(() => {
+                setTimeout(() => audio.muted = false, 600);
+            }).catch(() => {});
         }
     });
 
     function enableAudio() {
-        const overlay = document.getElementById("soundUnlock");
-        overlay.style.display = "none";
-
+        document.getElementById("soundUnlock").style.display = "none";
         audio.muted = false;
         audio.play();
     }
 
-    /* FIXED SLIDE NAVIGATION */
+    /* SLIDE NAVIGATION */
     function showSlide(n) {
-
         document.querySelectorAll(".slide").forEach(s => s.classList.remove("active"));
 
         if (n === 3) {
