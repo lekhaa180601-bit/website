@@ -145,7 +145,6 @@
 <!-- 🔊 Background Music -->
 <audio id="bgMusic" loop playsinline>
     <source src="./unnale.mp3" type="audio/mpeg">
-    <source src="./unnale.mp3" type="audio/mp3">
 </audio>
 
 <!-- iOS Tap-to-Enable-Sound -->
@@ -170,21 +169,17 @@
     const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
     const audio = document.getElementById("bgMusic");
 
+    /* NEW FIX — allow audio only after user click */
     document.addEventListener("DOMContentLoaded", () => {
-        audio.muted = true;
-
-        if (isIOS) {
-            document.getElementById("soundUnlock").style.display = "flex";
-        } else {
-            audio.play().then(() => {
-                setTimeout(() => audio.muted = false, 600);
-            }).catch(() => {});
-        }
+        audio.pause();
     });
+
+    document.addEventListener("click", () => {
+        audio.play().catch(()=>{});
+    }, { once: true });
 
     function enableAudio() {
         document.getElementById("soundUnlock").style.display = "none";
-        audio.muted = false;
         audio.play();
     }
 
